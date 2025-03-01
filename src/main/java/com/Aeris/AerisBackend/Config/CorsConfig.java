@@ -11,7 +11,7 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**") // Permite CORS para todos os endpoints sob /api
-                .allowedOrigins("http://localhost:3000") // Permite requisições do frontend
+                .allowedOrigins("https://aeris-smart-robot.netlify.app/") // Permite requisições do frontend
                 .allowedMethods("GET", "POST", "PUT", "DELETE") // Métodos permitidos
                 .allowedHeaders("*") // Headers permitidos
                 .allowCredentials(true); // Permite credenciais (cookies, etc.)
