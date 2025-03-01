@@ -27,7 +27,7 @@ public class DeepSeekService {
                 .add(0, new org.springframework.http.converter.StringHttpMessageConverter(StandardCharsets.UTF_8));
     }
 
-    public String sendMessage(String message) {
+    public String sendMessage(String message, String requestMessage) {
         String url = "https://api.deepseek.com/chat/completions";
 
         HttpHeaders headers = new HttpHeaders();

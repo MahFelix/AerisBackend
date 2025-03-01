@@ -2,7 +2,7 @@ package com.Aeris.AerisBackend.controller;
 
 import com.Aeris.AerisBackend.DTO.ChatRequest;
 import com.Aeris.AerisBackend.model.Message;
-import com.Aeris.AerisBackend.service.GeminiService;
+import com.Aeris.AerisBackend.service.DeepSeekService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class ChatController {
 
     @Autowired
-    private GeminiService geminiService; // Injeta o GeminiService
+    private DeepSeekService deepseekservice; // Injeta o GeminiService
 
     @PostMapping
     public Message sendMessage(@RequestBody ChatRequest request) {
@@ -20,8 +20,8 @@ public class ChatController {
             throw new IllegalArgumentException("Os campos 'prompt' e 'message' são obrigatórios.");
         }
 
-        // Chama o GeminiService para enviar a mensagem e obter a resposta
-        String geminiResponse = geminiService.sendMessage(request.getPrompt(), request.getMessage());
+        // Chama o DeepSeekService para enviar a mensagem e obter a resposta
+        String geminiResponse = deepseekservice.sendMessage(request.getPrompt(), request.getMessage());
 
         // Cria um objeto Message com a resposta do Gemini
         Message message = new Message();
