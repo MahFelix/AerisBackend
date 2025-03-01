@@ -5,23 +5,30 @@ import com.Aeris.AerisBackend.model.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Service
 public class ChatService {
 
     @Autowired
     private MessageRepository messageRepository;
 
-    @Autowired
-    private GeminiService geminiService;
+    // Método para enviar mensagens
+    public Message sendMessage(String prompt, String message) {
+        String response = "Resposta simulada para: " + message;
 
-    public Message sendMessage(String prompt, String userMessage) {
-        String response = geminiService.sendMessage(prompt, userMessage);
+        Message newMessage = new Message();
+        newMessage.setPrompt(prompt);
+        newMessage.setMessage(message);
+        newMessage.setResponse(response);
+        newMessage.setTimestamp(LocalDateTime.now());
 
-        Message message = new Message();
-        message.setPrompt(prompt);
-        message.setMessage(userMessage);
-        message.setResponse(response);
+        return messageRepository.save(newMessage);
+    }
 
-        return messageRepository.save(message);
+    // Método para buscar mensagens
+    public List<Message> getMessages() {
+        return messageRepository.findAll();
     }
 }
